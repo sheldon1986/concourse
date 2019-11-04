@@ -13,6 +13,7 @@ services:
       options:
         max-file: "5"
         max-size: "10m"
+    restart: always
 
   web:
     image: concourse/concourse:4.2.1
@@ -34,6 +35,7 @@ services:
       options:
         max-file: "5"
         max-size: "10m"
+    restart: always
 
   worker:
     image: concourse/concourse:4.2.1
@@ -48,6 +50,7 @@ services:
     stop_signal: SIGUSR2
     environment:
       CONCOURSE_TSA_HOST: web:2222
+    restart: always
 
   worker2:
     image: concourse/concourse:4.2.1
@@ -62,6 +65,7 @@ services:
     stop_signal: SIGUSR2
     environment:
       CONCOURSE_TSA_HOST: web:2222
+    restart: always
 
         #  worker3:
         #    image: concourse/concourse:4.2.1
