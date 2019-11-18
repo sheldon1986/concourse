@@ -44,8 +44,7 @@ services:
     depends_on: [web]
     volumes:
       - ./keys/worker:/concourse-keys
-      - ./worker1/4.2.1:/worker-state/4.2.1
-        #      - ./worker1/volumes:/worker-state/volumes
+      - ./worker1/4.2.1:/worker-state/
     links: [web]
     stop_signal: SIGUSR2
     environment:
@@ -59,29 +58,9 @@ services:
     depends_on: [web]
     volumes:
       - ./keys/worker:/concourse-keys
-      - ./worker2/4.2.1:/worker-state/4.2.1
-        #      - ./worker2/volumes:/worker-state/volumes
+      - ./worker2/4.2.1:/worker-state/
     links: [web]
     stop_signal: SIGUSR2
     environment:
       CONCOURSE_TSA_HOST: web:2222
     restart: always
-
-        #  worker3:
-        #    image: concourse/concourse:4.2.1
-        #    command: worker
-        #    privileged: true
-        #    depends_on: [web]
-        #    volumes:
-        #      - ./keys/worker:/concourse-keys
-        #      - ./worker3/4.2.1:/worker-state/4.2.1
-        #        #      - ./worker3/volumes:/worker-state/volumes
-        #    links: [web]
-        #    stop_signal: SIGUSR2
-        #    environment:
-        #      CONCOURSE_TSA_HOST: web:2222
-        #    logging:
-        #      driver: "json-file"
-        #      options:
-        #        max-file: "5"
-        #        max-size: "10m"
