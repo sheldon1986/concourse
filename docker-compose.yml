@@ -21,8 +21,12 @@ services:
     links: [db]
     depends_on: [db]
     ports: ["80:8080"]
+    ports: ["443:443"]
     volumes: ["./keys/web:/concourse-keys"]
     environment:
+      CONCOURSE_TLS_BIND_PORT: 443
+      CONCOURSE_TLS_CERT: /concourse-keys/cert.pem
+      CONCOURSE_TLS_KEY: /concourse-keys/privkey.pem
       CONCOURSE_EXTERNAL_URL: http://localhost:8080
       CONCOURSE_POSTGRES_HOST: db
       CONCOURSE_POSTGRES_USER: concourse_user
